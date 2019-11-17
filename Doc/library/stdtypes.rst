@@ -265,8 +265,9 @@ which is narrower than complex.  Comparisons between numbers of mixed type use
 the same rule. [2]_ The constructors :func:`int`, :func:`float`, and
 :func:`complex` can be used to produce numbers of a specific type.
 
-All numeric types (except complex) support the following operations (for priorities of
-the operations, see :ref:`operator-summary`):
+All numeric types (except complex) support the following operations, sorted by
+ascending priority (all numeric operations have a higher priority than
+comparison operations):
 
 +---------------------+---------------------------------+---------+--------------------+
 | Operation           | Result                          | Notes   | Full documentation |
@@ -1669,16 +1670,16 @@ expression support in the :mod:`re` module).
 
 .. method:: str.isalnum()
 
-   Return ``True`` if all characters in the string are alphanumeric and there is at
-   least one character, ``False`` otherwise.  A character ``c`` is alphanumeric if one
+   Return true if all characters in the string are alphanumeric and there is at
+   least one character, false otherwise.  A character ``c`` is alphanumeric if one
    of the following returns ``True``: ``c.isalpha()``, ``c.isdecimal()``,
    ``c.isdigit()``, or ``c.isnumeric()``.
 
 
 .. method:: str.isalpha()
 
-   Return ``True`` if all characters in the string are alphabetic and there is at least
-   one character, ``False`` otherwise.  Alphabetic characters are those characters defined
+   Return true if all characters in the string are alphabetic and there is at least
+   one character, false otherwise.  Alphabetic characters are those characters defined
    in the Unicode character database as "Letter", i.e., those with general category
    property being one of "Lm", "Lt", "Lu", "Ll", or "Lo".  Note that this is different
    from the "Alphabetic" property defined in the Unicode Standard.
@@ -1686,8 +1687,8 @@ expression support in the :mod:`re` module).
 
 .. method:: str.isascii()
 
-   Return ``True`` if the string is empty or all characters in the string are ASCII,
-   ``False`` otherwise.
+   Return true if the string is empty or all characters in the string are ASCII,
+   false otherwise.
    ASCII characters have code points in the range U+0000-U+007F.
 
    .. versionadded:: 3.7
@@ -1695,8 +1696,8 @@ expression support in the :mod:`re` module).
 
 .. method:: str.isdecimal()
 
-   Return ``True`` if all characters in the string are decimal
-   characters and there is at least one character, ``False``
+   Return true if all characters in the string are decimal
+   characters and there is at least one character, false
    otherwise. Decimal characters are those that can be used to form
    numbers in base 10, e.g. U+0660, ARABIC-INDIC DIGIT
    ZERO.  Formally a decimal character is a character in the Unicode
@@ -1705,8 +1706,8 @@ expression support in the :mod:`re` module).
 
 .. method:: str.isdigit()
 
-   Return ``True`` if all characters in the string are digits and there is at least one
-   character, ``False`` otherwise.  Digits include decimal characters and digits that need
+   Return true if all characters in the string are digits and there is at least one
+   character, false otherwise.  Digits include decimal characters and digits that need
    special handling, such as the compatibility superscript digits.
    This covers digits which cannot be used to form numbers in base 10,
    like the Kharosthi numbers.  Formally, a digit is a character that has the
@@ -1715,7 +1716,7 @@ expression support in the :mod:`re` module).
 
 .. method:: str.isidentifier()
 
-   Return ``True`` if the string is a valid identifier according to the language
+   Return true if the string is a valid identifier according to the language
    definition, section :ref:`identifiers`.
 
    Call :func:`keyword.iskeyword` to test whether string ``s`` is a reserved
@@ -1734,14 +1735,14 @@ expression support in the :mod:`re` module).
 
 .. method:: str.islower()
 
-   Return ``True`` if all cased characters [4]_ in the string are lowercase and
-   there is at least one cased character, ``False`` otherwise.
+   Return true if all cased characters [4]_ in the string are lowercase and
+   there is at least one cased character, false otherwise.
 
 
 .. method:: str.isnumeric()
 
-   Return ``True`` if all characters in the string are numeric
-   characters, and there is at least one character, ``False``
+   Return true if all characters in the string are numeric
+   characters, and there is at least one character, false
    otherwise. Numeric characters include digit characters, and all characters
    that have the Unicode numeric value property, e.g. U+2155,
    VULGAR FRACTION ONE FIFTH.  Formally, numeric characters are those with the property
@@ -1750,8 +1751,8 @@ expression support in the :mod:`re` module).
 
 .. method:: str.isprintable()
 
-   Return ``True`` if all characters in the string are printable or the string is
-   empty, ``False`` otherwise.  Nonprintable characters are those characters defined
+   Return true if all characters in the string are printable or the string is
+   empty, false otherwise.  Nonprintable characters are those characters defined
    in the Unicode character database as "Other" or "Separator", excepting the
    ASCII space (0x20) which is considered printable.  (Note that printable
    characters in this context are those which should not be escaped when
@@ -1761,36 +1762,22 @@ expression support in the :mod:`re` module).
 
 .. method:: str.isspace()
 
-   Return ``True`` if there are only whitespace characters in the string and there is
-   at least one character, ``False`` otherwise.
-
-   A character is *whitespace* if in the Unicode character database
-   (see :mod:`unicodedata`), either its general category is ``Zs``
-   ("Separator, space"), or its bidirectional class is one of ``WS``,
-   ``B``, or ``S``.
-
+   Return true if there are only whitespace characters in the string and there is
+   at least one character, false otherwise.  Whitespace characters  are those
+   characters defined in the Unicode character database as "Other" or "Separator"
+   and those with bidirectional property being one of "WS", "B", or "S".
 
 .. method:: str.istitle()
 
-   Return ``True`` if the string is a titlecased string and there is at least one
+   Return true if the string is a titlecased string and there is at least one
    character, for example uppercase characters may only follow uncased characters
-   and lowercase characters only cased ones.  Return ``False`` otherwise.
+   and lowercase characters only cased ones.  Return false otherwise.
 
 
 .. method:: str.isupper()
 
-   Return ``True`` if all cased characters [4]_ in the string are uppercase and
-   there is at least one cased character, ``False`` otherwise.
-
-      >>> 'BANANA'.isupper()
-      True
-      >>> 'banana'.isupper()
-      False
-      >>> 'baNana'.isupper()
-      False
-      >>> ' '.isupper()
-      False
-
+   Return true if all cased characters [4]_ in the string are uppercase and
+   there is at least one cased character, false otherwise.
 
 
 .. method:: str.join(iterable)
@@ -3010,8 +2997,8 @@ place, and instead produce new objects.
 .. method:: bytes.isalnum()
             bytearray.isalnum()
 
-   Return ``True`` if all bytes in the sequence are alphabetical ASCII characters
-   or ASCII decimal digits and the sequence is not empty, ``False`` otherwise.
+   Return true if all bytes in the sequence are alphabetical ASCII characters
+   or ASCII decimal digits and the sequence is not empty, false otherwise.
    Alphabetic ASCII characters are those byte values in the sequence
    ``b'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'``. ASCII decimal
    digits are those byte values in the sequence ``b'0123456789'``.
@@ -3027,8 +3014,8 @@ place, and instead produce new objects.
 .. method:: bytes.isalpha()
             bytearray.isalpha()
 
-   Return ``True`` if all bytes in the sequence are alphabetic ASCII characters
-   and the sequence is not empty, ``False`` otherwise.  Alphabetic ASCII
+   Return true if all bytes in the sequence are alphabetic ASCII characters
+   and the sequence is not empty, false otherwise.  Alphabetic ASCII
    characters are those byte values in the sequence
    ``b'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'``.
 
@@ -3043,8 +3030,8 @@ place, and instead produce new objects.
 .. method:: bytes.isascii()
             bytearray.isascii()
 
-   Return ``True`` if the sequence is empty or all bytes in the sequence are ASCII,
-   ``False`` otherwise.
+   Return true if the sequence is empty or all bytes in the sequence are ASCII,
+   false otherwise.
    ASCII bytes are in the range 0-0x7F.
 
    .. versionadded:: 3.7
@@ -3053,8 +3040,8 @@ place, and instead produce new objects.
 .. method:: bytes.isdigit()
             bytearray.isdigit()
 
-   Return ``True`` if all bytes in the sequence are ASCII decimal digits
-   and the sequence is not empty, ``False`` otherwise. ASCII decimal digits are
+   Return true if all bytes in the sequence are ASCII decimal digits
+   and the sequence is not empty, false otherwise. ASCII decimal digits are
    those byte values in the sequence ``b'0123456789'``.
 
    For example::
@@ -3068,8 +3055,8 @@ place, and instead produce new objects.
 .. method:: bytes.islower()
             bytearray.islower()
 
-   Return ``True`` if there is at least one lowercase ASCII character
-   in the sequence and no uppercase ASCII characters, ``False`` otherwise.
+   Return true if there is at least one lowercase ASCII character
+   in the sequence and no uppercase ASCII characters, false otherwise.
 
    For example::
 
@@ -3086,8 +3073,8 @@ place, and instead produce new objects.
 .. method:: bytes.isspace()
             bytearray.isspace()
 
-   Return ``True`` if all bytes in the sequence are ASCII whitespace and the
-   sequence is not empty, ``False`` otherwise.  ASCII whitespace characters are
+   Return true if all bytes in the sequence are ASCII whitespace and the
+   sequence is not empty, false otherwise.  ASCII whitespace characters are
    those byte values in the sequence ``b' \t\n\r\x0b\f'`` (space, tab, newline,
    carriage return, vertical tab, form feed).
 
@@ -3095,8 +3082,8 @@ place, and instead produce new objects.
 .. method:: bytes.istitle()
             bytearray.istitle()
 
-   Return ``True`` if the sequence is ASCII titlecase and the sequence is not
-   empty, ``False`` otherwise. See :meth:`bytes.title` for more details on the
+   Return true if the sequence is ASCII titlecase and the sequence is not
+   empty, false otherwise. See :meth:`bytes.title` for more details on the
    definition of "titlecase".
 
    For example::
@@ -3110,8 +3097,8 @@ place, and instead produce new objects.
 .. method:: bytes.isupper()
             bytearray.isupper()
 
-   Return ``True`` if there is at least one uppercase alphabetic ASCII character
-   in the sequence and no lowercase ASCII characters, ``False`` otherwise.
+   Return true if there is at least one uppercase alphabetic ASCII character
+   in the sequence and no lowercase ASCII characters, false otherwise.
 
    For example::
 
@@ -4223,8 +4210,7 @@ pairs within braces, for example: ``{'jack': 4098, 'sjoerd': 4127}`` or ``{4098:
       >>> c = dict(zip(['one', 'two', 'three'], [1, 2, 3]))
       >>> d = dict([('two', 2), ('one', 1), ('three', 3)])
       >>> e = dict({'three': 3, 'one': 1, 'two': 2})
-      >>> f = dict({'one': 1, 'three': 3}, two=2)
-      >>> a == b == c == d == e == f
+      >>> a == b == c == d == e
       True
 
    Providing keyword arguments as in the first example only works for keys that
@@ -4233,10 +4219,6 @@ pairs within braces, for example: ``{'jack': 4098, 'sjoerd': 4127}`` or ``{4098:
 
    These are the operations that dictionaries support (and therefore, custom
    mapping types should support too):
-
-   .. describe:: list(d)
-
-      Return a list of all the keys used in the dictionary *d*.
 
    .. describe:: len(d)
 
@@ -4372,16 +4354,8 @@ pairs within braces, for example: ``{'jack': 4098, 'sjoerd': 4127}`` or ``{4098:
       Return a new view of the dictionary's values.  See the
       :ref:`documentation of view objects <dict-views>`.
 
-      An equality comparison between one ``dict.values()`` view and another
-      will always return ``False``. This also applies when comparing
-      ``dict.values()`` to itself::
-
-         >>> d = {'a': 1}
-         >>> d.values() == d.values()
-         False
-
    Dictionaries compare equal if and only if they have the same ``(key,
-   value)`` pairs (regardless of ordering). Order comparisons ('<', '<=', '>=', '>') raise
+   value)`` pairs. Order comparisons ('<', '<=', '>=', '>') raise
    :exc:`TypeError`.
 
    Dictionaries preserve insertion order.  Note that updating a key does not
